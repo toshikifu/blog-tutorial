@@ -11,13 +11,23 @@ export default function PostAdmin() {
   const { posts } = useLoaderData<typeof loader>();
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="my-6 mb-2 border-b-2 text-center text-3xl">Blog Admin</h1>
-      <div className="grid grid-cols-4 gap-6">
+      <main className="mx-auto max-w-4xl px-4 py-8 bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg">
+        <h1 className="mb-2 text-center text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-400">
+          Blog Admin
+        </h1>
+      </main>
+      <div className="grid grid-cols-4 gap-6 m-4">
         <nav className="col-span-4 md:col-span-1">
-          <ul>
+          <ul className="space-y-4">
             {posts.map((post) => (
-              <li key={post.slug}>
-                <Link to={post.slug} className="text-blue-600 underline">
+              <li
+                key={post.slug}
+                className="bg-white hover:bg-slate-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+              >
+                <Link
+                  to={post.slug}
+                  className="block p-4 text-blue-600 hover:text-blue-800 underline"
+                >
                   {post.title}
                 </Link>
               </li>

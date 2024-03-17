@@ -34,7 +34,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 const inputClassName =
-  "w-full rounded border border-gray-500 px-2 py-1 text-lg";
+  "w-full rounded border border-gray-300 shadow-sm px-4 py-2 text-lg leading-6 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500";
 
 export default function NewPost() {
   const errors = useActionData<typeof action>();
@@ -42,49 +42,55 @@ export default function NewPost() {
   const navigation = useNavigation();
   const isCreating = Boolean(navigation.state === "submitting");
   return (
-    <Form method="post">
-      <p>
-        <label>
-          Post Title:{" "}
+    <Form method="post" className="space-y-6">
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Post Title:
           {errors?.title ? (
-            <em className="text-red-600">{errors.title}</em>
+            <span className="text-red-500">{errors.title}</span>
           ) : null}
-          <input type="text" name="title" className={inputClassName} />
+          <input
+            type="text"
+            name="title"
+            className={`${inputClassName} mt-1`}
+          />
         </label>
-      </p>
-      <p>
-        <label>
-          Post Slug:{" "}
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Post Slug:
           {errors?.slug ? (
-            <em className="text-red-600">{errors.slug}</em>
+            <span className="text-red-500">{errors.slug}</span>
           ) : null}
-          <input type="text" name="slug" className={inputClassName} />
+          <input type="text" name="slug" className={`${inputClassName} mt-1`} />
         </label>
-      </p>
-      <p>
-        <label htmlFor="markdown">
+      </div>
+      <div>
+        <label
+          htmlFor="markdown"
+          className="block text-sm font-medium text-gray-700"
+        >
           Markdown:
           {errors?.markdown ? (
-            <em className="text-red-600">{errors.markdown}</em>
+            <span className="text-red-500">{errors.markdown}</span>
           ) : null}
         </label>
-        <br />
         <textarea
           id="markdown"
           rows={20}
           name="markdown"
-          className={`${inputClassName} font-mono`}
+          className={`${inputClassName} mt-1 font-mono`}
         />
-      </p>
-      <p className="text-right">
+      </div>
+      <div className="text-right">
         <button
           type="submit"
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
+          className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300"
           disabled={isCreating}
         >
-          {isCreating ? "creating ..." : "Create Post"}
+          {isCreating ? "Creating..." : "Create Post"}
         </button>
-      </p>
+      </div>
     </Form>
   );
 }
