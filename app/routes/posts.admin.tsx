@@ -32,6 +32,22 @@ export default function PostAdmin() {
                 </Link>
               </li>
             ))}
+            <li className="bg-blue-100 hover:bg-blue-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+              <Link
+                to="new"
+                className="block p-4 text-blue-600 hover:text-blue-800 underline"
+              >
+                Create a new post
+              </Link>
+            </li>
+            <li className="bg-green-100 hover:bg-green-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+              <Link
+                to={"/posts"}
+                className="block p-4 text-green-600 hover:text-green-800 underline"
+              >
+                Home
+              </Link>
+            </li>
           </ul>
         </nav>
         <main className="col-span-4 md:col-span-3">
